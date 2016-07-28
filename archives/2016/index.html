@@ -175,6 +175,125 @@
             <div class="postShorten-header">
                 <h1 class="postShorten-title" itemprop="headline">
                     
+                        <a class="link-unstyled" href="/2016/07/28/搭建hexo博客/">
+                            搭建hexo博客
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time itemprop="datePublished" datetime="2016-07-28T16:52:29+08:00">
+	
+		    Jul 28, 2016
+    	
+    </time>
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-content" itemprop="articleBody">
+                    <h1 id="搭建HEXO博客"><a href="#搭建HEXO博客" class="headerlink" title="搭建HEXO博客"></a>搭建HEXO博客</h1><p>###什么是Hexo<br><strong>Hexo</strong>是一种基于Node.js快速，简便，功能强大的博客框架，hexo用markdown来写文章，只需要几秒钟就可以生成静态网页。</p>
+<p>###安装环境<br>Hexo博客系统是基于Node.js的，如果想要把博客搭建在免费的Github上，首先你需要在本地安装nodejs和Git。如果你已经安装了nodejs和Git，请跳过以下的1,2步骤。</p>
+<p>###安装Node.js<br>安装Node.js最好的方式是用<a href="https://github.com/creationix/nvm" target="_blank" rel="external">nvm</a><br>cURL:</p>
+<blockquote>
+<p>$ curl <a href="https://raw.github.com/creationix/nvm/master/install.sh" target="_blank" rel="external">https://raw.github.com/creationix/nvm/master/install.sh</a> | sh</p>
+</blockquote>
+<p>Wget:</p>
+<blockquote>
+<p>$ wget -qO- <a href="https://raw.github.com/creationix/nvm/master/install.sh" target="_blank" rel="external">https://raw.github.com/creationix/nvm/master/install.sh</a> | sh</p>
+</blockquote>
+<p>当nvm安装好之后，重新启动终端，用下面的命令来安装Node.js</p>
+<blockquote>
+<p>$ nvm install stable</p>
+</blockquote>
+<p>或者，也可以直接在<a href="https://nodejs.org/en/" target="_blank" rel="external">Node.js官网</a>选择适合的版本进行本地安装 。</p>
+<p>###安装Git</p>
+<ul>
+<li><strong>windows</strong> ：下载并安装<a href="https://git-scm.com/download/win" target="_blank" rel="external">Git</a></li>
+<li><strong>Mac</strong> ：用<a href="http://mxcl.github.com/homebrew/" target="_blank" rel="external">Homebrew</a>, <a href="http://www.macports.org/" target="_blank" rel="external">MacPorts</a>, <a href="http://sourceforge.net/projects/git-osx-installer/" target="_blank" rel="external">installer</a>等工具都可以安装</li>
+<li><strong>Linux(Ubuntu, Debian)</strong> ：sudo apt-get install git-core </li>
+<li><strong>Linux(Fedora, Red Hat, CentOS)</strong> ：sudo yum install git-core</li>
+</ul>
+<p>###下载Hexo<br>当nodejs和Git都安装好之后，就可以用npm安装Hexo了:</p>
+<pre><code>$ npm install -g hexo-cli
+</code></pre><p>###安装Hexo<br>当Hexo下载好之后，用下面的命令在文件夹folder下初始化:</p>
+<pre><code>$ hexo init folder  
+$ cd folder 
+$ npm install
+</code></pre><p>初始化之后，本地项目里的文件目录结构如下：</p>
+<pre><code>.
+├── _config.yml
+├── package.json
+├── scaffolds
+├── source
+|   ├── _drafts
+|   └── _posts
+└── themes
+</code></pre><p>###简单介绍Hexo<br>_config.yml<br><a href="https://hexo.io/docs/configuration.html" target="_blank" rel="external">配置文件</a>，你可以在该文件里修改很多配置</p>
+<p>package.json<br>依赖安装包数据，包括<a href="http://embeddedjs.com/" target="_blank" rel="external">EJS</a>，<a href="http://learnboost.github.io/stylus/" target="_blank" rel="external">Stylus</a>以及<a href="http://daringfireball.net/projects/markdown/" target="_blank" rel="external">Markdown</a> 是默认安装的，如果你暂时不需要你可以之后再安装。</p>
+<pre><code>package.json
+{
+  &quot;name&quot;: &quot;hexo-site&quot;,
+  &quot;version&quot;: &quot;0.0.0&quot;,
+  &quot;private&quot;: true,
+  &quot;hexo&quot;: {
+    &quot;version&quot;: &quot;&quot;
+  },
+  &quot;dependencies&quot;: {
+    &quot;hexo&quot;: &quot;^3.0.0&quot;,
+    &quot;hexo-generator-archive&quot;: &quot;^0.1.0&quot;,
+    &quot;hexo-generator-category&quot;: &quot;^0.1.0&quot;,
+    &quot;hexo-generator-index&quot;: &quot;^0.1.0&quot;,
+    &quot;hexo-generator-tag&quot;: &quot;^0.1.0&quot;,
+    &quot;hexo-renderer-ejs&quot;: &quot;^0.1.0&quot;,
+    &quot;hexo-renderer-stylus&quot;: &quot;^0.2.0&quot;,
+    &quot;hexo-renderer-marked&quot;: &quot;^0.2.4&quot;,
+    &quot;hexo-server&quot;: &quot;^0.1.2&quot;
+  }
+}
+</code></pre><p>####源文件<br><code>source</code>文件夹里是放博客的内容文件的。Hexo会忽略隐藏文件，以及那些以下划线开头命名的文件和文件夹，除了_post文件夹。渲染文件（比如markdown文件）会被处理并放到<code>public</code>文件夹下，而其他文件只会简单的被复制。</p>
+<p>####博客主题<br><code>Themes</code>文件夹里存放的是Hexo博客主题，Hexo会将网站内容和主题结合生成一个静态博客网站。</p>
+<p>####Hexo主要命令<br><strong>init（初始化）</strong> </p>
+<pre><code>$ hexo init [folder]
+</code></pre><p>初始化一个博客网站，如果没有文件夹，Hexo会在当前目录下新建一个博客文件夹</p>
+<p><strong>new（新建）</strong></p>
+<pre><code>$ hexo new [layout] &lt;title&gt;
+</code></pre><p>新建一篇文章，如果写了layout，Hexo会用_config.yml里default_layout设置的值，如果title里有空格，则会用引号括起来。</p>
+<p><strong>generate（生成）</strong></p>
+<pre><code>$ hexo generate
+</code></pre><p>生成静态文件<br>| 选项 |  描述  |<br>| :——– | :——– |<br>| -d –deploy  | 当generate执行完之后，进行deploy部署 |<br>| -w –watch   | watch(监听文件改变) |</p>
+<p> <strong>publish（发布）</strong></p>
+<pre><code>$ hexo publish [layout] &lt;filename&gt;
+</code></pre><p>发布预览<br> <strong>server（服务）</strong></p>
+<pre><code>$ hexo publish [layout] &lt;filename&gt;
+</code></pre><p>跑一个本地服务器，默认的地址是<a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a><br>| 选项 |  描述  |<br>| :——– | :——– |<br>| -p –port  | 重写端口号 |<br>| -s –static   | 只跑静态文件 |<br>| -l –log   | 重写日志格式 |<br> <strong>deploy（发布）</strong></p>
+<pre><code>$ hexo deploy
+</code></pre><p>发布到线上Git<br>| 选项 |  描述  |<br>| :——– | :——– |<br>| -g –generate| 在发布之前先生成 |  </p>
+<p>本文是搭建好hexo博客的第一篇博文，以此记录下搭建博客的过程和方法。</p>
+
+                    
+                        
+                    
+                    
+                        <p>
+                            <a href="/2016/07/28/搭建hexo博客/#post-footer" class="postShorten-excerpt_link link">
+                                Comment and share
+                            </a>
+                        </p>
+                    
+                </div>
+            
+        </div>
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title" itemprop="headline">
+                    
                         <a class="link-unstyled" href="/2016/07/15/hello-world/">
                             Hello World
                         </a>
@@ -215,13 +334,6 @@
                 </div>
             
         </div>
-        
-            <a href="/2016/07/15/hello-world/">
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" itemprop="image" src="undefined"/>
-                </div>
-            </a>
-            
         
     </article>
     
@@ -294,6 +406,25 @@
                 <div class="media">
                     
                     <div class="media-body">
+                        <a class="link-unstyled" href="http://yoursite.com/2016/07/28/搭建hexo博客/">
+                            <h3 class="media-heading">搭建hexo博客</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    Jul 28, 2016
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-body">
                         <a class="link-unstyled" href="http://yoursite.com/2016/07/15/hello-world/">
                             <h3 class="media-heading">Hello World</h3>
                         </a>
@@ -317,7 +448,7 @@
                 data-message-zero="no post found"
                 data-message-one="1 post found"
                 data-message-other="{n} posts found">
-                1 post found
+                2 posts found
             </p>
         </div>
     </div>
